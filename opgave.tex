@@ -1,0 +1,639 @@
+\documentclass[12pt, dutch]{article}
+
+\usepackage[multiple]{footmisc}
+\usepackage{babel}
+\usepackage[final]{graphicx}
+\usepackage[hidelinks, hyperfootnotes=false]{hyperref}
+\usepackage{fullpage}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{dtklogos}
+\usepackage{microtype}
+
+\usepackage{tcolorbox}
+
+\usepackage{cleveref}
+\crefname{figure}{Figuur}{Figuur}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows, calc}
+
+\newcommand{\bs}{\textbackslash}
+
+\hyphenation{ge-lijk-aardige}
+
+\title{\LaTeX: Eerste oefenzitting}
+\author{Informatica werktuigen}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{\LaTeX{}}
+
+\LaTeX{} (spreek uit: La-Tech, omdat de laatste X eigenlijk een
+Griekse chi ($\chi$) is) wordt uitgevoerd vanaf de prompt, dus in een
+terminal.\footnote{Onder Windows: het startmenu openenen en \texttt{cmd.exe} invoeren.}
+Er bestaan ook gebruiksvriendelijkere omgevingen, maar die hebben meestal het
+nadeel dat de gebruiker niet goed kan inschatten welke fout hij gemaakt heeft.
+
+In tegenstelling tot een WYSIWYG\footnote{What You See Is What You
+  Get, of What You See Is All You've Got} tekstverwerker werkt
+\LaTeX{} met een bronbestand, in platte tekst, dat gecompileerd wordt.
+Deze platte tekst is uiteraard voorzien van tags, net zoals een HTML
+bestand.
+
+Het resultaat van het bronbestand na verwerking door \LaTeX{} kun je op
+verschillende manieren bekijken. Je kunt kiezen om \LaTeX{} te compileren naar
+een PDF, of een aantal andere uitvoerbestanden, zoals DVI of Postscript.
+Aangezien die andere formaten niet meer zo vaak gebruikt worden, kijken we enkel
+naar PDF. Stel dat je \LaTeX-bronbestand \texttt{tekst.tex} heet, gebruiken we
+\texttt{pdflatex tekst.tex} om dit bestand te compileren naar een PDF. Je kunt
+dit bestand bijvoorbeeld openen met \texttt{evince}, maar je kunt ook het
+algemene commando \texttt{xdg-open tekst.pdf} gebruiken, waarbij Linux een
+applicatie kiest die dit bestand kan openen.
+
+\LaTeX{}-bronbestanden bewerk je best in een editor die \LaTeX{}-syntax-
+highlighting ondersteunt, om zo het werk te vergemakkelijken. Bijna elke
+Linux editor heeft standaard syntax highlighting, al dan niet mits de
+optie expliciet aan te zetten, bvb.\ \textbf{gedit} of \textbf{kile}.
+Ook voor Windows zijn er veel
+gratis\footnote{\url{http://www.latexeditor.org/}}\footnote{\url{http://www.texniccenter.org/}}
+en betalende\footnote{\url{http://www.winedt.com/}} applicaties om
+\LaTeX{}-bestanden te bewerken.
+
+\subsection{Introductie tot \LaTeX}
+Open een teksteditor naar keuze en open het bestand \texttt{opgave1.tex}.
+Om dit bestand te compileren open je een console en voer je de nodige opdrachten
+in.
+\begin{tcolorbox}[title=Opgave 1]
+  Compileer het bestand opgave1.tex en open de pdf.
+\end{tcolorbox}
+
+Indien het bestand een fout bevat, zal \LaTeX{} overschakelen naar een
+interactieve modus waarmee je de fout kan verbeteren. Typ \texttt{X} om deze te
+verlaten.
+
+\begin{tcolorbox}[title=Opgave 2]
+  Compileer het bestand opgave2.tex. Zoals je merkt staat er een fout in dit
+  bestand. Los de fout op en compileer het bestand opnieuw. Vergelijk indien nodig
+  met het bestand van opgave 1 om uit te vinden waar de fout ligt.
+\end{tcolorbox}
+Het is eenvoudiger om \LaTeX{} te laten werken in nonstop-mode. Dit doe je als volgt:
+\begin{center} \verb'pdflatex -interaction=nonstopmode tekst.tex' \end{center}
+Op deze manier zal \LaTeX{} niet voor iedere fout de compilatie onderbreken.
+
+
+
+Gemakkelijker is om een editor te gebruiken die rechtstreeks \LaTeX{} ondersteunt,
+en waarmee je kunt compileren en visualiseren met \'e\'en toetsaanslag.
+Vermits dit afhankelijk is van het OS (Windows/Linux/Mac OS X) en de gebruikte
+editor, zoek je best zelf uit welke editor voor jou het beste werkt. Tijdens
+deze oefenzitting leren we jullie nog iets meer over hoe \LaTeX{} compileert, en
+zullen we dus soms toch vragen om het \texttt{pdflatex} commando te gebruiken.
+
+\subsection{De preambule}
+We gaan nu meer in detail bekijken wat er juist in de broncode van het bestand
+staat. Bekijk de opties die gegeven zijn in de \texttt{\bs{}documentclass}
+opdracht op de eerste regel. De optie \texttt{a4paper} verzekert je ervan dat
+\LaTeX{} de tekst zal formatteren op een A4 blad. Anders bestaat de kans dat
+het Amerikaanse \texttt{letter} formaat gebruikt zal worden.
+
+In de preambule\footnote{Dit is het deel vóór het eigenlijke
+  document, zeg maar de instellingen van het document.} vind je ook
+een \texttt{\bs{}usepackage} commando terug. Dit commando laadt het
+\texttt{babel} pakket. Dit \texttt{babel} pakket verzorgt taalafhankelijkheden
+tijdens het verwerken van de tekst. \LaTeX{} gaat namelijk zelf
+woorden splitsen en de splitsingsregels verschillen van taal tot
+taal. Sectietitels en hoofdstuktitels veranderen ook als je een
+inhoudstabel genereert zal \LaTeX{} die zelf de titel ``Table of
+Contents'' of ``Inhoudstabel'' geven naargelang de taal die je
+gebruikt. Het argument dat je mee moet geven is de taal die gebruikt
+wordt in de tekst. In het voorbeeld is dit Nederlands (\texttt{dutch}).
+
+
+\begin{tcolorbox}[title=Opgave 3]
+  Laad het \texttt{todonotes} pakket. Zonder dit pakket zal de opgave niet
+  succesvol compileren. Compileer het bestand en open de resulterende PDF.
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[title=Opgave 4a]
+  Compileer het bestand en open de resulterende PDF. Je zult zien dat er op
+  een aantal plaatsen rare tekens staan. We zullen dat probleem oplossen
+  in Opgave 4b.
+\end{tcolorbox}
+
+Als je de tekst snel even overloopt zul je zien dat hier en daar een
+\%-teken gebruikt wordt. Aangezien een normaal \%-teken in een \textbf{.tex}
+bestand aangeeft dat de rest van de lijn commentaar is moet er een
+escape karakter gebruikt worden om aan te geven dat het \%-teken in
+de tekst moet komen i.p.v.\ een commentaarlijn te starten.  Dit
+escape karakter is een backslash(\texttt{\bs}).
+
+\LaTeX{} gebruikte origineel enkel ASCII-karakters. Als je andere karakters
+gebruikt, zoals \'e, weet \LaTeX{} niet hoe daarmee om te gaan. Vroeger was het
+verplicht om dit te schrijven als \texttt{\bs\textquotesingle{}e}, tegenwoordig
+is er een \LaTeX{} package dat het toelaat om UTF-8 karakters te gebruiken. Voeg het commando
+\texttt{\bs{}usepackage[utf8]\{inputenc\}} toe aan de preambule.\footnote{Het
+  kan zijn dat \LaTeX{} klaagt indien je bestand niet in UTF-8 encodering is
+  opgeslagen. Als je bijvoorbeeld \textbf{gedit} gebruikt om je bestand aan te
+  passen, open dan het bestand via \textbf{File > Open} maar selecteer in het
+  dialoogvenster als \textbf{character encoding} UTF-8.} \textbf{We raden
+  jullie sterk aan dit steeds te doen.}
+
+\begin{tcolorbox}[title=Opgave 4b]
+  Gebruik het \texttt{inputenc} pakket om de compilatiefouten rond speciale tekens op
+  te lossen. Compileer het bestand opnieuw en controleer dat de fouten zijn
+  opgelost.
+\end{tcolorbox}
+
+% \subsection{Het \texttt{\bs{}documentclass} commando}
+
+\begin{tcolorbox}[title=Opgave 4c]
+  Voeg aan de opties voor het \texttt{\bs{}documentclass} commando de
+  optie \texttt{titlepage} toe.  De opties voor een \LaTeX{} commando
+  moeten van elkaar gescheiden worden aan de hand van komma's.  Wat
+  heeft dit voor effect?  Wat gebeurt er als je de optie \texttt{12pt}
+  toevoegt?
+\end{tcolorbox}
+\begin{tcolorbox}[title=Opgave 4d]
+  Wijzig de klasse van het document van \texttt{article} naar
+  \texttt{report}, verander alle \texttt{\bs{}section} commando's naar
+  \texttt{\bs{}chapter} commando's en alle \texttt{\bs{}subsection} naar
+  \texttt{\bs{}section} commando's.
+\end{tcolorbox}
+
+\subsection{Tabellen}
+
+In de derde paragraaf ``De derde fase'', heeft men het over de
+kalender voor de invoering van de euro. We gaan deze kalender in een
+tabel zetten. Hiervoor zullen we het commando \texttt{\bs{}tabular}
+gebruiken. Zoek met Google hoe dit commando werkt.
+\begin{tcolorbox}[title=Opgave 5a]
+  Wijzig de tekst zodat de kalender in tabelvorm in de tekst terug te vinden is.
+\end{tcolorbox}
+Zorg ervoor dat de datum gecentreerd staat en zorg ervoor dat de
+tekst in de tweede kolom niet buiten de kantlijnen loopt. Je doet dit
+door voor de tweede kolom een lengte op te geven: gebruik het
+\texttt{p\{lengte\}} commando in de parameterlijst van de
+tabel (waar je normaal de letter \texttt{l} zou gebruiken om de kolom
+links uit te vullen). Een \texttt{lengte} is een getal gevolgd door een
+lengtemaat, bv.\ \texttt{5cm}.
+
+\begin{tcolorbox}[title=Opgave 5b]
+  Zorg ervoor dat de tabel gecentreerd is (met \texttt{\bs{}begin\{center\}} en
+  \texttt{\bs{}end\{center\}}).
+\end{tcolorbox}
+
+Het resultaat zou er ongeveer als volgt moeten uitzien:
+
+\begin{center}
+  \begin{tabular}{|c|p{7cm}|}
+    \hline
+    01.01.1999 & giraal geldverkeer in de nationale munten en in euro                     \\ \hline
+    01.01.2002 & invoering van biljetten en muntstukken, giraal geldverkeer enkel in euro \\ \hline
+    01.07.2002 & (ten laatste): alles in euro!                                            \\ \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Lijsten}
+
+Heb je ook gemerkt dat de criteria van Maastricht op het zicht
+moeilijk te herkennen zijn in de tekst? In een goede tekst moet
+belangrijke informatie duidelijk herkenbaar zijn via de layout. Daar
+moeten we dus iets aan veranderen. \LaTeX{} voorziet hiervoor de
+\texttt{description} lijstomgeving. Deze omgeving laat je toe om van
+elk element in een lijst van beschrijvingen aan te geven welke term je
+beschrijft. Je kan dit bij elk \texttt{item} als een optioneel argument
+(tussen vierkante haken: \texttt{[]}) meegeven. Een voorbeeld:
+\begin{verbatim}
+\begin{description}
+\item[regen] is nogal nat en valt uit de hemel
+\item[sneeuw] is nogal wit en valt uit de hemel
+\end{description}
+\end{verbatim}
+
+Het resultaat ziet er als volgt uit:
+\begin{description}
+  \item[regen] is nogal nat en valt uit de hemel
+  \item[sneeuw] is nogal wit en valt uit de hemel
+\end{description}
+
+\begin{tcolorbox}[title=Opgave 5c]
+  Zoek de documentatie op van de \texttt{description}-omgeving en
+  gebruik deze voor de 4 criteria van Maastricht: Prijsstabiliteit,
+  Wisselkoersen, Rentetarieven en Overheidsschulden.
+\end{tcolorbox}
+
+\subsection{Figuren}
+
+De term figuur in \LaTeX{} betekent niet hetzelfde als een afbeelding.
+Een figuur moet je eigenlijk zien als een kader met een bepaalde
+illustratie in (bijvoorbeeld een afbeelding, maar ook bijvoorbeeld een
+tabel of een citaat), die niet tussen de tekst zelf geplaatst wordt,
+maar ergens als een apart deel in het document ``rondzweeft'' (in het
+Engels spreekt men soms van ``floating''). \LaTeX{} gebruikt bepaalde
+algoritmes om een ideale plaatsing te bepalen, maar indien echt nodig
+kan je dit op bepaalde manieren be\"{\i}nvloeden.
+
+\begin{tcolorbox}[title=Opgave 5d]
+  Voeg een drijvende figuur toe. Hiervoor gebruik je de
+  \texttt{figure}-omgeving. Plaats hier de tekst ``voorbeeldfiguur'' in.
+\end{tcolorbox}
+
+
+Je kunt in de \texttt{figure} omgeving ook een ondertekst geven aan de figuur
+aan de hand van het \texttt{\bs{}caption} commando. Het \texttt{\bs{}caption}
+commando bevat als argument gewoon de ondertekst. Je kunt
+de figuur een label geven aan door het \texttt{\bs{}label} commando te
+gebruiken na het \texttt{\bs{}caption} commando. Dit
+label is niet zichtbaar in de gegenereerde PDF, maar vanuit andere
+delen van de tekst kan je met behulp van dit label naar de figuur
+verwijzen, met het \texttt{\bs{}ref} commando.
+
+
+\begin{tcolorbox}[title=Opgave 5d]
+  Voeg een caption en een label toe aan de figuur en voeg een verwijzing ernaar
+  toe in de tekst, net onder de figuur.
+\end{tcolorbox}
+
+Voer \LaTeX{} \textbf{\'e\'en} maal uit en bekijk het resultaat. Klopt
+de referentie naar de figuur die je toegevoegd hebt? Wellicht niet.
+Als je \LaTeX{} uitvoert wordt er een lijst van labels aangemaakt en opgeslagen
+in \'e\'en van de hulpbestanden.
+Echter, \LaTeX{} zal die lijst pas de volgende keer als je \LaTeX{}
+uitvoert gebruiken. Als je referenties gebruikt moet je dus \LaTeX{}
+altijd 2 maal uitvoeren als je zeker wilt zijn dat alle referenties
+correct zijn! Voer \LaTeX{} dus nogmaals uit. Het resultaat zou nu
+moeten kloppen.
+
+In de rest van de oefenzitting zullen we gebruik maken van de tool
+\texttt{latexmk}. Deze tool kan automatisch detecteren hoe vaak \LaTeX{} moet
+compileren en zal net zo vaak compileren met de juiste tools tot het resultaat
+correct zou moeten zijn.
+
+
+\begin{tcolorbox}[title=Opgave 5e]
+  Voer het commando \texttt{latexmk -C} uit. Dit verwijdert alle tijdelijke
+  bestanden. Dit commando kun je ook gebruiken in de map van het groepswerk en
+  zal je helpen voorkomen dat je tijdelijke bestanden van \LaTeX{} gaat
+  toevoegen aan de repository.
+\end{tcolorbox}
+\begin{tcolorbox}[title=Opgave 5f]
+  Voer het commando \texttt{latexmk -pdf opgave5.tex} uit. Dit compileert je
+  bestand volledig. Controleer dat ook in dit geval de referentie klopt. Dit
+  commando voert op de achtergrond pdflatex uit.
+\end{tcolorbox}
+
+\subsection{Afbeeldingen}
+
+Voor afbeeldingen worden in \LaTeX{} niet alle bestandsformaten
+toegelaten. Welke formaten zijn toegelaten hangt ook af van de manier
+waarop je \LaTeX{} gebruikt. Als je bijvoorbeeld \texttt{pdflatex} gebruikt
+(zoals voor deze tekst de bedoeling is), dan kan je onder meer JPEG,
+PNG en PDF afbeeldingen gebruiken.
+
+Om die figuren toe te voegen moet je het \texttt{graphicx} pakket
+gebruiken. Voeg dus een entry toe voor het
+\texttt{graphicx} pakket; dit pakket heeft twee mogelijke opties:
+\texttt{draft} indien je in je resultaat nog niet de echte figuur, maar
+enkel de omringende box wilt en \texttt{final} indien de figuur mag
+toegevoegd worden aan het resultaat. Met andere woorden: het pakket
+wordt toegevoegd met de volgende regel (toe te voegen in de
+preambule): \texttt{\bs{}usepackage[final]\{graphicx\}}.
+
+\begin{tcolorbox}[title=Opgave 5g]
+  Voeg het \texttt{graphicx} pakket toe.
+\end{tcolorbox}
+
+We willen nu de tekst in je hierboven gedefinieerde figuur vervangen
+door de afbeelding \texttt{euro.png}. Nu gaan we deze afbeelding toevoegen
+aan onze tekst aan de hand van het \texttt{\bs{}includegraphics}
+commando. Je kan de documentatie zoeken op het internet, maar nu moet je het commando
+gewoon \'e\'en argument meegeven, namelijk de naam van het
+afbeeldingsbestand.
+\begin{tcolorbox}[title=Opgave 5h]
+  Voeg de afbeelding toe aan je bestand. Centreer de afbeelding en geef het de
+  ondertekst ``Het Euro symbool''.
+\end{tcolorbox}
+
+Meestal wordt aan dit commando een breedte en hoogte meegegeven om de
+ingeladen figuur te herschalen zodat ze past in je document. Je kan
+deze meegeven als optionele argumenten van het \texttt{\bs{}includegraphics} commando.
+Als je slechts \'e\'en van deze twee afmetingen specificeert, wordt de andere zo
+berekend dat de ``aspect ratio'' (verhouding hoogte-breedte) van de afbeelding
+bewaard blijft. Een voorbeeld van het voorgaande kan dus zijn:
+
+\begin{itemize}
+  \item \texttt{\bs{}includegraphics[width=280pt,height=160pt]\{mydrawing.png\}} of
+  \item \texttt{\bs{}includegraphics[width=8cm]\{mydrawing.png\}}
+\end{itemize}
+
+In het eerste voorbeeld wordt het bestand \texttt{mydrawing.png} ingeladen en
+wordt de scalering geforceerd op 280~punten breedte en 160~punten
+hoogte. In het tweede voorbeeld wordt de figuur zo gescaleerd dat de
+breedte 8~cm bedraagt en de hoogte in verhouding blijft.
+
+Bemerk trouwens dat je de \texttt{\bs{}label} en \texttt{\bs{}ref} ook kan gebruiken bij
+\texttt{chapters}, \texttt{sections} en zelfs stukken tekst.
+
+\subsection{Inhoudstabel}
+
+\LaTeX{} kan automatisch een inhoudstafel voor je genereren. Probeer
+dit uit door het \texttt{\bs{}tableofcontents} commando toe
+te voegen vlak na de aanmaak van het titelblad.  Op een
+gelijkaardige manier kun je een lijst van (drijvende) figuren en een
+lijst van (drijvende) tabellen toevoegen met respectievelijk het
+\texttt{\bs{}listoffigures} en \texttt{\bs{}listoftables} commando.
+Ook bij deze twee commando's moet je \LaTeX{} twee maal uitvoeren.
+\begin{tcolorbox}[title=Opgave 5i]
+  Voeg een inhoudstabel toe.
+\end{tcolorbox}
+
+\subsection{Bestanden Opsplitsen}
+Wanneer je bestand groot wordt of je hieraan met meerdere mensen moet samenwerken,
+gebruik je best een version control system zoals Git.
+In het geval dat meerdere personen aan dezelfde tekst gewerkt hebben, zal dergelijke
+software steeds zoveel mogelijk automatisch proberen te mergen. Hiervoor gaat het ervan uit
+dat wanneer er slechts \'e\'en persoon wijzigingen heeft uitgevoerd rond dezelfde {\em regel}, deze zonder problemen
+opgenomen kunnen worden in het samengevoegde resultaat. Wanneer echter meerdere personen
+wijzigingen proberen door te voeren rond dezelfde regel, dan moet er om manuele interventie
+gevraagd worden om de twee versies samen te voegen.\footnote{Bij het groepswerk ga je ongetwijfeld in een
+  dergelijke situatie terecht komen. Zoek eens op wat het commando {\tt latexdiff} precies doet en test het uit.}
+Het is dan ook af te raden om volledige paragrafen op eenzelfde
+regel te schrijven. Beter is om deze op te delen over verschillende regels
+(b.v.\ een zin per regel). Aangezien \LaTeX{} enkel een lege
+regel als het einde van een alinea beschouwt, is dit geen probleem. Zo kun
+je ook commentaar binnen een paragraaf schrijven.
+
+\LaTeX{} biedt echter nog een andere manier aan om merge conflicten te vermijden.
+Je kunt je \LaTeX{}-bestanden opsplitsen in meerdere delen. Zo wordt elk
+afzonderlijk deeltje gemakkelijker te bewerken en kan je ook met meerdere
+mensen tegelijkertijd aan eenzelfde document werken zonder continu
+merge-conflicten te hebben in Git.\footnote{Dit kan zeer nuttig zijn voor jullie groepswerk!}
+
+\LaTeX{} biedt hiervoor het \texttt{\bs{}input}-commando aan.
+De werking is eenvoudig:
+\begin{verbatim}
+ \input{anderbestand}
+\end{verbatim}
+Bovenstaand commando gaat ervoor zorgen dat het bestand
+\texttt{anderbestand.tex} opgenomen wordt in de verwerking van het huidige
+bestand. Het is dus alsof het \texttt{\bs{}input}-commando
+vervangen wordt door de volledige inhoud van \texttt{anderbestand.tex}.
+
+\begin{tcolorbox}[title=Opgave 5j]
+  Splits de twee grote secties uit de voorbeeldtekst op in twee aparte
+  bestanden \texttt{sectie1.tex} en \texttt{sectie2.tex} in dezelfde directory en gebruik
+  het \texttt{\bs{}input}-commando om deze in de uiteindelijke tekst te combineren.
+\end{tcolorbox}
+
+\section{\BibTeX}\label{sec:bibtex}
+
+Bij het schrijven van artikels is het citeren van andere papers
+bijzonder belangrijk. Een citaat geeft langs \'e\'en kant aan waar je
+je inspiratie gehaald hebt (onder meer belangrijk om te voorkomen dat
+je plagiaat pleegt!) en geeft anderzijds een startpunt aan de lezer
+van je artikel indien die meer informatie wil opzoeken over het
+onderwerp.
+
+Voor het practicum van dit vak is het natuurlijk belangrijk dat in
+jullie artikel de bronnen geciteerd worden die jullie gevonden en
+gebruikt hebben. Daarom geven we in deze sectie een korte introductie
+tot de \LaTeX{}-tool die meestal gebruikt wordt om bibliografie\"en
+bij te houden: \BibTeX.
+
+\subsection{\BibTeX-entries}
+
+Een \BibTeX-bibliografie wordt bijgehouden in een tekstbestand met
+extensie \texttt{.bib}. Dit tekstbestand bevat een lijst van
+zogenaamde \BibTeX-\emph{entries}. Zulke entries refereren
+typisch naar artikels, boeken of websites, maar kunnen eventueel ook
+naar andere dingen verwijzen.
+
+Elke entry heeft een aantal eigenschappen, afhankelijk van
+het type. Zo heeft een verwijzing naar een boek bijvoorbeeld de
+eigenschappen `titel', `ISBN-nummer', `auteur', `uitgever', etc. Een
+verwijzing naar een website daarentegen heeft bijvoorbeeld geen
+ISBN-nummer, maar wel een URL. Een \BibTeX-entry hoeft niet per se
+alle eigenschappen die ermee geassocieerd kunnen worden op te geven
+(bijvoorbeeld, bij een verwijzing naar een boek hoeft niet per se
+ingevuld te worden welke editie van het boek het is), maar
+natuurlijk zijn sommige eigenschappen wel belangrijk. Zo stelt een
+verwijzing naar een website niet veel voor als de URL-eigenschap
+niet ingevuld is.
+
+Elke entry in een \BibTeX-bestand volgt een bepaald formaat.
+Afhankelijk van het type van de entry verandert het formaat lichtjes,
+maar de syntax blijft altijd dezelfde. Deze syntax ziet er uit als in
+\cref{fig:bibtexstructure}.
+
+\begin{figure}
+  \begin{verbatim}
+@entry_type{korte-naam,
+    eigenschap-1 = {waarde},
+    eigenschap-2 = {waarde-2},
+    ...
+    eigenschap-N = {waarde-N},
+}
+\end{verbatim}
+  \caption{De structuur van een \BibTeX-entry}
+  \label{fig:bibtexstructure}
+\end{figure}
+
+Elk type heeft een aantal eigenschappen:
+
+\begin{description}
+  \item[Vereiste eigenschappen] Deze eigenschappen zijn in principe
+        vereist. Als ze niet opgegeven worden zal \BibTeX{} een waarschuwing
+        genereren tijdens de compilatie van het document. Indien deze
+        eigenschappen niet opgegeven worden, kan het zijn dat de
+        tekst-formattering van het citaat er slecht uitziet.
+
+  \item[Optionele eigenschappen] Deze eigenschappen mogen opgegeven
+        worden, maar kunnen ook zonder probleem weggelaten worden.
+
+  \item[Genegeerde eigenschappen] Alle eigenschapen die niet vereist
+        of optioneel zijn worden genegeerd.
+\end{description}
+
+De belangrijkste types die in \BibTeX{} gebruikt kunnen worden zijn
+hieronder weergegeven:\footnote{Meer informatie kan je ook vinden op \url{http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management}}
+
+\begin{description}
+
+  \item[@article] Een artikel in een (typisch wetenschappelijk)
+        magazine. Vereiste velden: author, title, journal, year. Optionele
+        velden: volume, number, pages, month, note.
+
+  \item[@book] Een boek. Vereiste velden: author
+        or editor, title, publisher, year. Optionele velden: volume of
+        number, series, address, edition, month, note.
+
+  \item[@inbook] Een deel van een boek, wat een bepaald hoofdstuk kan zijn, maar ook een
+        sectie of een bepaalde reeks bladzijden. Vereiste velden: author of
+        editor, title, chapter en/of pages, publisher, year. Optionele
+        velden: volume of number, series, type, address, edition, month,
+        note.
+
+  \item[@inproceedings] Een artikel dat gepubliceerd is op een
+        wetenschappelijke conferentie. Vereiste velden: author, title,
+        booktitle, year. Optionele velden: editor, volume of number, series,
+        pages, address, month, organization, publisher, note.
+
+  \item[@misc] Gebruik dit als je geen van de anderen kan gebruiken.
+        Vereiste velden: geen. Optionele velden: author, title,
+        howpublished, month, year, note.
+
+  \item[@phdthesis] Een doctoraatsthesis. Vereiste velden: author, title, school,
+        year. Optionele velden: type, address, month, note.
+
+  \item[@unpublished] Een document dat niet formeel gepubliceerd is. Vereiste velden: author, title, note.
+        Optionele velden: month, year.
+
+\end{description}
+
+\begin{figure}
+  \begin{verbatim}
+ @article{Dijkstra:1968:goto,
+    author = {Dijkstra, Edsger W.},
+    title = {Letters to the editor: go to statement considered harmful},
+    journal = {Communications of the ACM},
+    volume = {11},
+    number = {3},
+    year = {1968},
+    issn = {0001-0782},
+    pages = {147--148},
+    doi = {http://doi.acm.org/10.1145/362929.362947},
+    publisher = {ACM},
+    address = {New York, NY, USA}
+ }
+\end{verbatim}
+  \caption{Een voorbeeld \BibTeX-entry}\label{fig:bibtexexample}
+\end{figure}
+
+Een voorbeeld van een \BibTeX-entry wordt gegeven in
+\cref{fig:bibtexexample}. Dit is een \BibTeX-definitie van het
+bekende artikel \emph{``go to statement considered harmful''} van
+Edsger Dijkstra. Als naam kiezen we `Dijkstra:1968:goto'. Deze naam
+kan je zelf kiezen, maar typisch is het een combinatie van de naam
+van de eerste auteur, het jaartal, en dan een sleutelwoord uit de
+titel. In deze naam mogen geen komma's of spaties voorkomen.
+
+\subsection{Gebruik vanuit \LaTeX}
+
+In opgave 6 zie je een voorbeeld van het gebruik van \BibTeX. De tekst bestaat
+uit twee bestanden:
+
+\begin{description}
+  \item[opgave6.tex] Dit is een standaard \LaTeX-bestand dat de
+        tekst van het artikel bevat.
+
+  \item[opgave6.bib] De bijhorende bibliografie. Dit bestand bevat
+        drie referenties waarnaar verwezen wordt vanuit de tekst.
+\end{description}
+
+Bij het compileren van een tekst die gebruik maakt van \BibTeX{} wordt
+een iteratief proces doorlopen zoals je al eerder gezien hebt bij
+referenties naar figuren en tabellen. Eerst wordt de tekst van het
+\LaTeX-bronbestand een eerste keer naar PDF gecompileerd. Tijdens dit
+proces wordt er een \texttt{.aux}-bestand aangemaakt. In een tweede stap
+wordt \BibTeX{} opgestart om op basis van de database van referenties in
+je \texttt{.bib} bestand en de verwijzingen die in het document voorkomen een
+geformatteerde bibliografie te genereren. Hierna wordt het document
+opnieuw geformatteerd, wordt de gegenereerde bibliografie opgenomen in
+het document en worden de referenties ingevuld met de juiste
+verwijzingen.
+
+Als je werkt via de console, moet je dus de volgende opdrachten uitvoeren:
+\begin{center}
+  \begin{minipage}{.7\linewidth}
+    \begin{verbatim}
+     pdflatex bestandsnaam.tex
+     bibtex bestandsnaam
+     pdflatex bestandsnaam.tex
+     pdflatex bestandsnaam.tex
+   \end{verbatim}
+  \end{minipage}
+\end{center}
+
+Je kunt alternatief ook \texttt{latexmk -pdf bestandsnaam.tex} gebruiken.
+\texttt{latexmk} zal herkennen dat \BibTeX{} gebruikt is en zal dit commando op
+het juiste moment uitvoeren.
+
+\begin{tcolorbox}[title=Opgave 6a]
+  Compileer het bestand opgave6.tex handmatig met \texttt{pdflatex} en
+  \texttt{bibtex}. Controleer na iedere stap hoe de referenties er uit zien.
+\end{tcolorbox}
+
+Een \LaTeX{}-bestand dat \BibTeX{} gebruikt moet wel op een bepaalde manier
+opgeven welk \texttt{.bib} bestand het gebruikt. Daarnaast moet er ook een
+bibliografiestijl opgegeven worden, die bepaalt hoe de bibliografie
+geformatteerd wordt. De volgende commando's worden hiervoor gebruikt:
+
+\begin{verbatim}
+  \bibliographystyle{plain}
+  \bibliography{opgave6}
+\end{verbatim}
+
+Het \texttt{\bs{}bibliographystyle}-commando gebruik je om
+de stijl van de bibliografie aan te passen. Het verwacht \'e\'en
+parameter die de volgende waarden kan aannemen: plain, unsrt, abbrv,
+alpha. In het voorbeeld wordt het type `plain' gebruikt.
+Probeer zelf de andere types en kijk wat het verschil is.
+\begin{tcolorbox}[title=Opgave 6b]
+  Probeer verschillende bibliografie stijlen uit.
+\end{tcolorbox}
+
+Het \texttt{\bs{}bibliography}-commando geeft aan welk
+bestand je bibliografie bevat, in dit geval \texttt{opgave6.bib}. Merk op dat
+de \texttt{.bib}-extensie niet opgegeven mag worden.
+
+Eenmaal je \LaTeX-bestand gelinkt is aan een bibliografie, kan je
+gaan citeren. Dit doe je door in je tekst gebruik te maken van het
+\texttt{\bs{}cite}-commando. Dit commando werkt analoog aan
+het \texttt{\bs{}ref}-commando, met als enig verschil dat
+je nu als parameter de naam van je \BibTeX-entry ingeeft.
+
+\subsection{Opzoeken van \BibTeX-entries}
+
+Voor de meeste wetenschappelijke artikels kan je \BibTeX-entries
+online vinden. Probeer dus zeker eerst online te zoeken naar het
+\BibTeX-entry van het artikel dat je wil citeren, voordat je er zelf
+\'e\'en probeert op te stellen. Zo kan je bijvoorbeeld de
+\BibTeX-entries vinden van de meeste informatica-artikels op
+\url{http://dblp.uni-trier.de}.
+
+Daarnaast kan je ook gebruik maken van Google Scholar
+(\url{http://scholar.google.com/}). Bij de voorkeursinstellingen kan
+je aangeven dat je van de artikels ook de \BibTeX-informatie wil zien.
+
+Kijk sowieso steeds de entries manueel na, sommige websites plaatsen
+er links naar zichzelf in en soms moet je enkele dingen aanpassen om
+al je referenties er consistent te laten uitzien. Tijdens een
+zoektocht naar artikels rond een bepaald onderwerp is het een goed
+idee om \BibTeX-entries bij te houden voor alle artikels die je
+bekijkt, zodat je zeker bent dat je later alles makkelijk terugvindt.
+
+\begin{tcolorbox}[title=Opgave 6c]
+  Voeg een extra referentie toe aan de bib-file. Je zult merken dat deze nog
+  niet in de bibliografie terecht komt. Citeer de referentie, en controleer
+  dat de referentie nu wel in de bibliografie vermeld staat.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Opgave 6d]
+  Voor één van de referenties die je in het groepswerk gevonden hebt, zoek de
+  \BibTeX-entry op en voeg deze toe aan je groepswerk repository. Zet de
+  referentie in het bestand \texttt{referenties.bib}. Vergeet het bestand niet
+  te adden, committen en pushen! Indien je een merge conflict krijgt, los het
+  dan op zoals je vorige week geleerd hebt.
+\end{tcolorbox}
+
+Veel succes!
+\input{addendum.tex}
+
+\end{document}
