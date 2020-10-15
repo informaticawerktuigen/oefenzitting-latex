@@ -3,6 +3,15 @@
 - [Basiskennis van Linux](https://github.com/informaticawerktuigen/oefenzitting-linux)
 - [Werkende Linux-omgeving](https://github.com/informaticawerktuigen/klaarzetten-werkomgeving)
 
+# Video
+
+In deze video wordt de oefenzitting opgelost.
+
+[![Bekijk de video](https://img.youtube.com/vi/l6sbLxL7wC0/hqdefault.jpg)](https://youtu.be/l6sbLxL7wC0)
+
+
+
+
 # Starten
 
 In deze oefenzitting leren we werken met LaTeX. LaTeX is een systeem waarmee we op een eenvoudige manier complexe PDF's kunnen genereren.
