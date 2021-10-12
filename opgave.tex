@@ -98,7 +98,7 @@ zullen we dus soms toch vragen om het \texttt{pdflatex} commando te gebruiken.
 \subsection{De preambule}
 We gaan nu meer in detail bekijken wat er juist in de broncode van het bestand
 staat. Bekijk de opties die gegeven zijn in de \texttt{\bs{}documentclass}
-opdracht op de eerste regel. De optie \texttt{a4paper} verzekert je ervan dat
+opdracht op de eerste regel van \texttt{opgave3.tex}. De optie \texttt{a4paper} verzekert je ervan dat
 \LaTeX{} de tekst zal formatteren op een A4 blad. Anders bestaat de kans dat
 het Amerikaanse \texttt{letter} formaat gebruikt zal worden.
 
@@ -116,47 +116,24 @@ wordt in de tekst. In het voorbeeld is dit Nederlands (\texttt{dutch}).
 
 
 \begin{tcolorbox}[title=Opgave 3]
-  Laad het \texttt{todonotes} pakket. Zonder dit pakket zal de opgave niet
+  Laad het \texttt{todonotes} pakket in \texttt{opgave3.tex}. Zonder dit pakket zal de opgave niet
   succesvol compileren. Compileer het bestand en open de resulterende PDF.
 \end{tcolorbox}
 
 
 \begin{tcolorbox}[title=Opgave 4a]
-  Compileer het bestand en open de resulterende PDF. Je zult zien dat er op
-  een aantal plaatsen rare tekens staan. We zullen dat probleem oplossen
-  in Opgave 4b.
+  Compileer \texttt{opgave4.tex} en open de resulterende PDF.
 \end{tcolorbox}
 
-Als je de tekst snel even overloopt zul je zien dat hier en daar een
-\%-teken gebruikt wordt. Aangezien een normaal \%-teken in een \textbf{.tex}
-bestand aangeeft dat de rest van de lijn commentaar is moet er een
-escape karakter gebruikt worden om aan te geven dat het \%-teken in
-de tekst moet komen i.p.v.\ een commentaarlijn te starten.  Dit
-escape karakter is een backslash(\texttt{\bs}).
-
-\LaTeX{} gebruikte origineel enkel ASCII-karakters. Als je andere karakters
-gebruikt, zoals \'e, weet \LaTeX{} niet hoe daarmee om te gaan. Vroeger was het
-verplicht om dit te schrijven als \texttt{\bs\textquotesingle{}e}, tegenwoordig
-is er een \LaTeX{} package dat het toelaat om UTF-8 karakters te gebruiken. Voeg het commando
-\texttt{\bs{}usepackage[utf8]\{inputenc\}} toe aan de preambule.\footnote{Het
-  kan zijn dat \LaTeX{} klaagt indien je bestand niet in UTF-8 encodering is
-  opgeslagen. Als je bijvoorbeeld \textbf{gedit} gebruikt om je bestand aan te
-  passen, open dan het bestand via \textbf{File > Open} maar selecteer in het
-  dialoogvenster als \textbf{character encoding} UTF-8.} \textbf{We raden
-  jullie sterk aan dit steeds te doen.}
-
-\begin{tcolorbox}[title=Opgave 4b]
-  Gebruik het \texttt{inputenc} pakket om de compilatiefouten rond speciale tekens op
-  te lossen. Compileer het bestand opnieuw en controleer dat de fouten zijn
-  opgelost.
-\end{tcolorbox}
+Het gegenereerde PDF-document ziet er op het eerste zicht in orde uit.
+Toch willen we het document verbeteren door een titelpagina toe te voegen.
 
 % \subsection{Het \texttt{\bs{}documentclass} commando}
 
 \begin{tcolorbox}[title=Opgave 4c]
   Voeg aan de opties voor het \texttt{\bs{}documentclass} commando de
   optie \texttt{titlepage} toe.  De opties voor een \LaTeX{} commando
-  moeten van elkaar gescheiden worden aan de hand van komma's.  Wat
+  moeten van elkaar gescheiden worden aan de hand van komma's. Tip: de opties bevinden zich binnen de vierkante haakjes, oftewel \textit{brackets} in het Engels. Wat
   heeft dit voor effect?  Wat gebeurt er als je de optie \texttt{12pt}
   toevoegt?
 \end{tcolorbox}
@@ -164,7 +141,7 @@ is er een \LaTeX{} package dat het toelaat om UTF-8 karakters te gebruiken. Voeg
   Wijzig de klasse van het document van \texttt{article} naar
   \texttt{report}, verander alle \texttt{\bs{}section} commando's naar
   \texttt{\bs{}chapter} commando's en alle \texttt{\bs{}subsection} naar
-  \texttt{\bs{}section} commando's.
+  \texttt{\bs{}section} commando's. Wat verardert dit aan het document?
 \end{tcolorbox}
 
 \subsection{Tabellen}

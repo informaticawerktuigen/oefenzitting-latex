@@ -1,7 +1,7 @@
-opgave.aux
-opgave.fdb_latexmk
-opgave.fls
-opgave.log
-opgave.out
-opgave.pdf
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pdf
 texput.log
