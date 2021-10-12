@@ -59,7 +59,7 @@ Dit commando genereert een PDF-bestand genaamd `opgave.pdf`. Het PDF-bestand is 
 - Open dit bestand met `evince` (of een andere PDF-viewer naar keuze) en werk de oefenzitting verder af:
 
 ```shell
-evince opgave.pdf
+evince opgave.pdf &
 ```
 
 **Belangrijk!** Als je in een container werkt, zal je het gegenereerde PDF-bestand met een PDF-viewer op je host OS moeten openen. Dit kan niet getoont worden vanuit de container.
